@@ -19,7 +19,7 @@ import okhttp3.Response;
 public class NetworkInterceptor implements Interceptor {
     private static NetworkInterceptor INSTANCE = null;
 
-    public static NetworkInterceptor getInstance(SharedPreferences sharedPreferences) {
+    public static NetworkInterceptor getInstance() {
         if (INSTANCE == null)
             return new NetworkInterceptor();
 
