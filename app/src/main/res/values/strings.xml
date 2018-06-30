@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ElMenus</string>
+
+    <string name="error_general">"Something went wrong, please try again"</string>
 </resources>
