@@ -1,5 +1,10 @@
 package app.elmenus.data.repository;
 
+import java.util.List;
+
+import app.elmenus.data.api.callbacks.BaseCallbackWithList;
+import app.elmenus.data.models.Item;
+
 public class ItemsRepository implements ItemsDataSource {
     private static ItemsRepository INSTANCE = null;
 
@@ -20,5 +25,24 @@ public class ItemsRepository implements ItemsDataSource {
 
     public static void destroyInstance() {
         INSTANCE = null;
+    }
+
+    @Override
+    public void getItems(final int page, final BaseCallbackWithList<Item> callback) {
+        itemsLocalDataSource.getItems(page, new BaseCallbackWithList<Item>() {
+            @Override
+            public void success(List<Item> ListOfData) {
+                callback.success(ListOfData);
+            }
+
+            @Override
+            public void error() {
+                getItemsFromRemoteDataSource(page, callback);
+            }
+        });
+    }
+
+    private void getItemsFromRemoteDataSource(int page, final BaseCallbackWithList<Item> callback) {
+        itemsRemoteDataSource.getItems(page, callback);
     }
 }

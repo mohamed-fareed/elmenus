@@ -11,6 +11,8 @@ import app.elmenus.data.db.dao.ItemDao;
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
+    public abstract ItemDao itemDao();
+
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
