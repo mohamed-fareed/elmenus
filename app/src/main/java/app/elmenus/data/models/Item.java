@@ -69,4 +69,14 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if (obj instanceof Item) {
+            result = this.id == ((Item) obj).id;
+        }
+        return result;
+    }
 }
