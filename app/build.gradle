@@ -46,6 +46,7 @@ dependencies {
     implementation "com.android.support:support-v4:$supportVersion"
     implementation "com.android.support:design:$supportVersion"
     implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation 'com.android.support:cardview-v7:27.1.1'
 
     // retrofit and network libs
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
