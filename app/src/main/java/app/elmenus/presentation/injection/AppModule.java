@@ -7,6 +7,8 @@ import app.elmenus.data.db.AppDatabase;
 import app.elmenus.data.repository.ItemsRepository;
 import app.elmenus.data.repository.local.ItemsLocalDataSource;
 import app.elmenus.data.repository.remote.ItemsRemoteDataSource;
+import app.elmenus.domain.base.UseCaseHandler;
+import app.elmenus.domain.usecases.GetItems;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
@@ -48,5 +50,15 @@ public class AppModule {
     ItemsRepository provideItemsRepository(ItemsRemoteDataSource itemsRemoteDataSource,
                                            ItemsLocalDataSource itemsLocalDataSource) {
         return ItemsRepository.getInstance(itemsRemoteDataSource, itemsLocalDataSource);
+    }
+
+    @Provides
+    GetItems provideGetItems(ItemsRepository itemsRepository) {
+        return new GetItems(itemsRepository);
+    }
+
+    @Provides
+    UseCaseHandler provideUseCaseHandler() {
+        return UseCaseHandler.getInstance();
     }
 }
