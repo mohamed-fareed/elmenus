@@ -4,6 +4,7 @@ import android.app.Application;
 
 import app.elmenus.presentation.injection.AppComponent;
 import app.elmenus.presentation.injection.AppModule;
+import app.elmenus.presentation.injection.DaggerAppComponent;
 import app.elmenus.presentation.injection.NetworkModule;
 
 public class ElMenusApp extends Application {
