@@ -5,7 +5,9 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {}, version = 1)
+import app.elmenus.data.db.dao.ItemDao;
+
+@Database(entities = {ItemDao.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
