@@ -16,7 +16,7 @@ public class ElMenusApp extends Application {
         mAppComponent = DaggerAppComponent
                 .builder()
                 .appModule(new AppModule(getApplicationContext()))
-                .networkModule(new NetworkModule(BASE_URL))
+                .networkModule(new NetworkModule(BuildConfig.BASE_URL))
                 .build();
     }
 

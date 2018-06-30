@@ -16,6 +16,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        live {
+            buildConfigField 'String', 'BASE_URL', '"http://elmenus.getsandbox.com/"'
+            dimension "default"
+        }
+        staging {
+            dimension "default"
+            buildConfigField 'String', 'BASE_URL', '"http://elmenus.getsandbox.com/"'
+        }
+    }
 }
 
 ext {
