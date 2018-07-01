@@ -42,7 +42,5 @@ public interface ItemListContract {
         void onItemClicked(long itemId);
 
         void onRetryFromErrorLoading(int currentPage);
-
-        void onCommentBodyChanged(CharSequence commentBody);
     }
 }
