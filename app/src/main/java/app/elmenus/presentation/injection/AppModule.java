@@ -9,6 +9,8 @@ import app.elmenus.data.repository.local.ItemsLocalDataSource;
 import app.elmenus.data.repository.remote.ItemsRemoteDataSource;
 import app.elmenus.domain.base.UseCaseHandler;
 import app.elmenus.domain.usecases.GetItems;
+import app.elmenus.presentation.screens.itemList.ItemListContract;
+import app.elmenus.presentation.screens.itemList.ItemListPresenter;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
@@ -60,5 +62,10 @@ public class AppModule {
     @Provides
     UseCaseHandler provideUseCaseHandler() {
         return UseCaseHandler.getInstance();
+    }
+
+    @Provides
+    ItemListContract.Presenter provideItemListPresenter() {
+        return new ItemListPresenter();
     }
 }
