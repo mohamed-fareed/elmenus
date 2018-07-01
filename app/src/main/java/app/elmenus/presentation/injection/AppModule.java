@@ -8,6 +8,7 @@ import app.elmenus.data.repository.ItemsRepository;
 import app.elmenus.data.repository.local.ItemsLocalDataSource;
 import app.elmenus.data.repository.remote.ItemsRemoteDataSource;
 import app.elmenus.domain.base.UseCaseHandler;
+import app.elmenus.domain.usecases.GetItem;
 import app.elmenus.domain.usecases.GetItems;
 import app.elmenus.presentation.screens.itemList.ItemListContract;
 import app.elmenus.presentation.screens.itemList.ItemListPresenter;
@@ -73,7 +74,13 @@ public class AppModule {
     }
 
     @Provides
-    SingleItemContract.Presenter provideSingleItemPresenter() {
-        return new SingleItemPresenter();
+    GetItem provideGetItem(ItemsRepository itemsRepository) {
+        return new GetItem(itemsRepository);
+    }
+
+    @Provides
+    SingleItemContract.Presenter provideSingleItemPresenter(UseCaseHandler useCaseHandler,
+                                                            GetItem getItem) {
+        return new SingleItemPresenter(useCaseHandler, getItem);
     }
 }
