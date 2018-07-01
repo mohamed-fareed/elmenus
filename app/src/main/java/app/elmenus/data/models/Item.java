@@ -20,36 +20,63 @@ public class Item {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "item_id")
-    private long id;
+    long id;
 
     @SerializedName("name")
     @ColumnInfo(name = "item_name")
-    private String name;
+    String name;
 
     @SerializedName("photoUrl")
     @ColumnInfo(name = "item_photo_url")
-    private String photoUrl;
+    String photoUrl;
 
     @SerializedName("description")
     @ColumnInfo(name = "item_description")
-    private String description;
+    String description;
 
     public Item() {
     }
 
+    @NonNull
     public long getId() {
         return id;
+    }
+
+    public void setId(@NonNull long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPhotoUrl() {
         return photoUrl;
     }
 
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if (obj instanceof Item) {
+            result = this.id == ((Item) obj).id;
+        }
+        return result;
     }
 }

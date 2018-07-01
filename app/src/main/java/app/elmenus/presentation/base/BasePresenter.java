@@ -49,11 +49,6 @@ public abstract class BasePresenter implements BaseContract.Presenter<BaseContra
         }
 
         @Override
-        public void showSnackbarMessage(String message) {
-
-        }
-
-        @Override
         public void exit() {
 
         }

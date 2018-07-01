@@ -10,8 +10,6 @@ public interface BaseContract {
 
         void showGeneralError();
 
-        void showSnackbarMessage(String message);
-
         void exit();
     }
 
