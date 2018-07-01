@@ -68,7 +68,7 @@ public class ItemsAdapter extends EpoxyController {
         requestModelBuild();
     }
 
-    public void setComments(List<Item> items) {
+    public void setItems(List<Item> items) {
         this.itemList = items;
 
         requestModelBuild();

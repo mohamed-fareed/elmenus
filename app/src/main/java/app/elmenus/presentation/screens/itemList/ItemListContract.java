@@ -11,10 +11,6 @@ public interface ItemListContract {
 
         void initializeListAdapter();
 
-        void showItemListLoading();
-
-        void hideItemListLoading();
-
         void showListErrorLoading();
 
         void hideListErrorLoading();
