@@ -1,5 +1,8 @@
 package app.elmenus.data.repository.remote;
 
+import java.util.List;
+import java.util.Random;
+
 import app.elmenus.data.api.ItemsApi;
 import app.elmenus.data.api.callbacks.BaseCallbackWithList;
 import app.elmenus.data.api.models.ItemsResponse;
@@ -30,11 +33,12 @@ public class ItemsRemoteDataSource implements ItemsDataSource {
     }
 
     @Override
-    public void getItems(int page, final BaseCallbackWithList<Item> callback) {
+    public void getItems(final int page, final BaseCallbackWithList<Item> callback) {
         itemsApi.getItems(page).enqueue(new Callback<ItemsResponse>() {
             @Override
             public void onResponse(Call<ItemsResponse> call, Response<ItemsResponse> response) {
-                if (response.isSuccessful()) callback.success(response.body().getItems());
+                if (response.isSuccessful())
+                    callback.success(interceptItemIds(page, response.body().getItems()));
                 else callback.error();
             }
 
@@ -43,5 +47,19 @@ public class ItemsRemoteDataSource implements ItemsDataSource {
                 callback.error();
             }
         });
+    }
+
+    /**
+     * items have the same ids whatever the page is
+     * so we need to intercept this and add page factor
+     * in practical app these ids should be different
+     */
+    private List<Item> interceptItemIds(int page, List<Item> items) {
+        for (Item item : items) {
+            Random rand = new Random();
+            int anyRandomNum = rand.nextInt(1000);
+            item.setId(item.getId() + page + anyRandomNum);
+        }
+        return items;
     }
 }

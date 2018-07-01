@@ -63,7 +63,7 @@ public class ItemListPresenter extends BasePresenter implements ItemListContract
 
         if (page != 0) mView.showProgress();
 
-        useCaseHandler.execute(getItems, new GetItems.RequestValues(page * 10),
+        useCaseHandler.execute(getItems, new GetItems.RequestValues(page),
                 new UseCase.UseCaseCallback<GetItems.ResponseValue>() {
                     @Override
                     public void onSuccess(GetItems.ResponseValue response) {

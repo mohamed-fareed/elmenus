@@ -65,7 +65,8 @@ public class AppModule {
     }
 
     @Provides
-    ItemListContract.Presenter provideItemListPresenter() {
-        return new ItemListPresenter();
+    ItemListContract.Presenter provideItemListPresenter(UseCaseHandler useCaseHandler,
+                                                        GetItems getItems) {
+        return new ItemListPresenter(useCaseHandler, getItems);
     }
 }
