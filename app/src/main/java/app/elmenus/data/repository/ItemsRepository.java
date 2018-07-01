@@ -3,6 +3,7 @@ package app.elmenus.data.repository;
 import java.util.List;
 
 import app.elmenus.data.api.callbacks.BaseCallbackWithList;
+import app.elmenus.data.api.callbacks.BaseCallbackWithObject;
 import app.elmenus.data.models.Item;
 
 public class ItemsRepository implements ItemsDataSource {
@@ -40,6 +41,25 @@ public class ItemsRepository implements ItemsDataSource {
                 getItemsFromRemoteDataSource(page, callback);
             }
         });
+    }
+
+    @Override
+    public void getItem(final long itemId, final BaseCallbackWithObject<Item> callback) {
+        itemsLocalDataSource.getItem(itemId, new BaseCallbackWithObject<Item>() {
+            @Override
+            public void success(Item data) {
+                callback.success(data);
+            }
+
+            @Override
+            public void error() {
+                getItemFromRemoteDataSource(itemId, callback);
+            }
+        });
+    }
+
+    private void getItemFromRemoteDataSource(long itemId, BaseCallbackWithObject<Item> callback) {
+        itemsRemoteDataSource.getItem(itemId, callback);
     }
 
     private void getItemsFromRemoteDataSource(int page, final BaseCallbackWithList<Item> callback) {
