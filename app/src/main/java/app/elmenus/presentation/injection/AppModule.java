@@ -11,6 +11,8 @@ import app.elmenus.domain.base.UseCaseHandler;
 import app.elmenus.domain.usecases.GetItems;
 import app.elmenus.presentation.screens.itemList.ItemListContract;
 import app.elmenus.presentation.screens.itemList.ItemListPresenter;
+import app.elmenus.presentation.screens.singleItem.SingleItemContract;
+import app.elmenus.presentation.screens.singleItem.SingleItemPresenter;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
@@ -68,5 +70,10 @@ public class AppModule {
     ItemListContract.Presenter provideItemListPresenter(UseCaseHandler useCaseHandler,
                                                         GetItems getItems) {
         return new ItemListPresenter(useCaseHandler, getItems);
+    }
+
+    @Provides
+    SingleItemContract.Presenter provideSingleItemPresenter() {
+        return new SingleItemPresenter();
     }
 }
