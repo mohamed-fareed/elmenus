@@ -1,13 +1,11 @@
 package app.elmenus.data.api.headers;
 
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import java.io.IOException;
 
 import javax.inject.Singleton;
 
-import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -36,6 +34,8 @@ public class NetworkInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();
+        request = request.newBuilder().addHeader("Content-Type", "application/json").build();
+
         return chain.proceed(request);
     }
 }
