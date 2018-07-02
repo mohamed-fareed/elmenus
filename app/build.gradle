@@ -29,6 +29,7 @@ android {
             buildConfigField 'String', 'BASE_URL', '"http://elmenus.getsandbox.com/"'
         }
     }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/transition'] } }
 }
 
 ext {

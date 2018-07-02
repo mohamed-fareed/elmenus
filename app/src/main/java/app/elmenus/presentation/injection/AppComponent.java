@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import app.elmenus.presentation.base.BaseActivity;
 import app.elmenus.presentation.base.BaseFragment;
 import app.elmenus.presentation.screens.itemList.ItemListFragment;
+import app.elmenus.presentation.screens.singleItem.SingleItemFragment;
 import dagger.Component;
 
 @Singleton
@@ -15,4 +16,6 @@ public interface AppComponent {
     void inject(BaseFragment baseFragment);
 
     void inject(ItemListFragment itemListFragment);
+
+    void inject(SingleItemFragment singleItemFragment);
 }

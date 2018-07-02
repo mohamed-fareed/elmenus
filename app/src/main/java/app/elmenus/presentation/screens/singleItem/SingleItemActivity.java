@@ -1,4 +1,4 @@
-package app.elmenus.presentation.screens.itemList;
+package app.elmenus.presentation.screens.singleItem;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -7,11 +7,13 @@ import android.transition.Slide;
 import android.view.Window;
 
 import app.elmenus.presentation.base.BaseFragmentActivity;
+import app.elmenus.presentation.utils.Constants;
 
-public class ItemListActivity extends BaseFragmentActivity {
+public class SingleItemActivity extends BaseFragmentActivity {
     @Override
     protected Fragment getFragment() {
-        return new ItemListFragmentBuilder().build();
+        long itemId = getIntent().getLongExtra(Constants.ITEM_ID, 0);
+        return new SingleItemFragmentBuilder(itemId).build();
     }
 
     @Override

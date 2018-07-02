@@ -5,6 +5,7 @@ import java.util.Random;
 
 import app.elmenus.data.api.ItemsApi;
 import app.elmenus.data.api.callbacks.BaseCallbackWithList;
+import app.elmenus.data.api.callbacks.BaseCallbackWithObject;
 import app.elmenus.data.api.models.ItemsResponse;
 import app.elmenus.data.models.Item;
 import app.elmenus.data.repository.ItemsDataSource;
@@ -47,6 +48,17 @@ public class ItemsRemoteDataSource implements ItemsDataSource {
                 callback.error();
             }
         });
+    }
+
+    @Override
+    public void getItem(long itemId, BaseCallbackWithObject<Item> callback) {
+        // no end point to be implemented
+        callback.error();
+    }
+
+    @Override
+    public void saveItems(List<Item> items) {
+        // no need to implement this
     }
 
     /**
