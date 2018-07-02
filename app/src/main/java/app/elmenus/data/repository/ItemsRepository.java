@@ -30,15 +30,16 @@ public class ItemsRepository implements ItemsDataSource {
 
     @Override
     public void getItems(final int page, final BaseCallbackWithList<Item> callback) {
-        itemsLocalDataSource.getItems(page, new BaseCallbackWithList<Item>() {
+        itemsRemoteDataSource.getItems(page, new BaseCallbackWithList<Item>() {
             @Override
             public void success(List<Item> ListOfData) {
+                itemsLocalDataSource.saveItems(ListOfData);
                 callback.success(ListOfData);
             }
 
             @Override
             public void error() {
-                getItemsFromRemoteDataSource(page, callback);
+                getItemsFromLocalDataSource(page, callback);
             }
         });
     }
@@ -58,11 +59,16 @@ public class ItemsRepository implements ItemsDataSource {
         });
     }
 
+    @Override
+    public void saveItems(List<Item> items) {
+        // ignored
+    }
+
     private void getItemFromRemoteDataSource(long itemId, BaseCallbackWithObject<Item> callback) {
         itemsRemoteDataSource.getItem(itemId, callback);
     }
 
-    private void getItemsFromRemoteDataSource(int page, final BaseCallbackWithList<Item> callback) {
-        itemsRemoteDataSource.getItems(page, callback);
+    private void getItemsFromLocalDataSource(int page, final BaseCallbackWithList<Item> callback) {
+        itemsLocalDataSource.getItems(page, callback);
     }
 }

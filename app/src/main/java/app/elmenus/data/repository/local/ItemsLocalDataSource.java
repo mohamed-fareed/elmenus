@@ -47,4 +47,9 @@ public class ItemsLocalDataSource implements ItemsDataSource {
         if (item != null) callback.success(item);
         else callback.error();
     }
+
+    @Override
+    public void saveItems(List<Item> items) {
+        appDatabase.itemDao().insertAll(items);
+    }
 }

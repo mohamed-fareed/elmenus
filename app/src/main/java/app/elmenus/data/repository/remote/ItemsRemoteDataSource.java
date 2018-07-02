@@ -56,6 +56,11 @@ public class ItemsRemoteDataSource implements ItemsDataSource {
         callback.error();
     }
 
+    @Override
+    public void saveItems(List<Item> items) {
+        // no need to implement this
+    }
+
     /**
      * items have the same ids whatever the page is
      * so we need to intercept this and add page factor
