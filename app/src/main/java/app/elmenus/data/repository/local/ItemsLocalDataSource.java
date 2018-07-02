@@ -1,5 +1,6 @@
 package app.elmenus.data.repository.local;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.elmenus.data.api.callbacks.BaseCallbackWithList;
@@ -50,6 +51,22 @@ public class ItemsLocalDataSource implements ItemsDataSource {
 
     @Override
     public void saveItems(List<Item> items) {
-        appDatabase.itemDao().insertAll(items);
+        appDatabase.itemDao().insertAll(getNewItems(items));
+    }
+
+    /**
+     * This method should get all saved items
+     * compare with new items, get the new non-duplicated ones to add them
+     */
+    private List<Item> getNewItems(List<Item> items) {
+        List<Item> cachedItems = appDatabase.itemDao().getAll();
+        List<Item> newItems = new ArrayList<>();
+
+        for (Item item : items) {
+            if (!cachedItems.contains(item))
+                newItems.add(item);
+        }
+
+        return newItems;
     }
 }
